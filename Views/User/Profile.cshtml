@@ -1,0 +1,245 @@
+﻿@using Project2.Models
+@model User
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ATP Cosmetics Shop </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="~/fontlib/owlcarousel/assets/owl.carousel.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/css/Style.css" type="text/css" rel="stylesheet">
+    <style>
+        #checkPasswordPhone {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        #checkPasswordEmail {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        .checkPasswordPhone_content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 50px;
+            border: 1px solid #888;
+            width: 40%;
+        }
+
+        .checkPasswordEmail_content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 50px;
+            border: 1px solid #888;
+            width: 40%;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- Page Header End -->
+
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5">
+            <!-- Shop Sidebar Start -->
+            <div class="col-lg-3 col-md-12">
+
+                <div class="mb-5">
+                    <h5 class="font-weight-semi-bold mb-4">Profile customer</h5>
+                    <form>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <a href="DisplayInformationCustomer" class="" for="size-all">Information</a>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <a href="DisplayAddress" class="" for="size-all">Address</a>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <a href="ChangePassword" class="" for="size-all">Change password</a>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <a href="DisplayHistotyBill" class="" for="size-all">History</a>
+                        </div>
+
+
+                    </form>
+                </div>
+                <!-- Size End -->
+            </div>
+
+            <form action="/User/UpdateInfomation" method="post" class="col-lg-9 col-md-12">
+
+                <h4 class="font-weight-semi-bold mb-4">Profile customer</h4>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label>Name</label>
+                        <input name="UserDetail.name" class="form-control" type="text" placeholder="John" value="@Model.UserName">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Address</label>
+                        <input name="UserDetail.address" class="form-control" type="text" placeholder="Doe" value="@Model.UserDetail.Address" >
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>E-mail</label>
+                        <div class="input-group form-group  mx-auto">
+                            <div id="defaultEmail" class="form-control" type="text" placeholder="example@email.com" value="@Model.UserDetail.Email">@Model.UserDetail.Email</div>
+                            <a id="changeEmail" style="margin-left: 5px; margin-top: 5px">Change</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Mobile No</label>
+                        <div class="input-group form-group  mx-auto">
+                            <div id="defaultPhone" class="form-control" type="text" placeholder="+123 45 678" pattern="[0-9]{3}[0-9]{2}[0-9]{3}" value="@Model.UserDetail.Phone">
+                                @Model.UserDetail.Phone
+                            </div>
+                            <a id="changePhone" style="margin-left: 5px; margin-top: 5px">Change</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Birthday</label>
+                        <input name="UserDetail.birthday" class="form-control" type="text" placeholder="YYYY-MM-DD " pattern="\d{1,2}/\d{1,2}/\d{4}" value="@Model.UserDetail.Birthday.ToString().Split(" ")[0]">
+                    </div>
+
+                </div>
+                <button style="background-color: papayawhip;color: palevioletred; border-color: white; margin-left: 50%" type="submit">Save</button>
+
+            </form>
+
+            <div class="ChangeEmail" id="checkPasswordEmail">
+                <div id="checkPasswordEmail_content" class="checkPasswordEmail_content">
+                    <form action="/User/ChangeEmail" id='formEmail' method="post">
+                        <div>
+                            <label style="text-align:center;">Password</label>
+                            <div class="input-group form-group  mx-auto">
+                                <input id="passwordEmail" name="password" class="form-control" type="password" required="required" hidden value="@Model.Password">
+                                <input type="password" class="form-control" name="confirm_password" id="confirm_passwordEmail">
+                                <span id="messageEmail"></span>
+                            </div>
+                            <a id="button_backEmail" style="border:solid 1px; background-color: papayawhip;color: palevioletred; border-color: white;margin-left:40%">Back</a>
+                            <a id="button_submitEmail" style="border:solid 1px; background-color: papayawhip;color: palevioletred; border-color: white;margin-left:10px">Submit</a>
+                            <input type="submit"  name="buttonSubmit1"  hidden id="submitFormEmail" >
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+            <div class="ChangePhone" id="checkPasswordPhone">
+                <div id="checkPasswordPhone_content" class="checkPasswordPhone_content">
+                    <form action="/User/ChangePhone" id='formPhone' method="post">
+                        <div>
+                            <label style="text-align:center;">Password</label>
+                            <div class="input-group form-group  mx-auto">
+                                <input id="passwordPhone" name="password" class="form-control" type="password" required="required" hidden value="@Model.Password">
+                                <input type="password" class="form-control" name="confirm_password" id="confirm_passwordPhone">
+                                <span id="messagePhone"></span>
+                            </div>
+                            <a id="button_backPhone" style=" border:solid 1px; background-color: papayawhip;color: palevioletred; border-color: white;margin-left:40%">Back</a>
+                            <a id="button_submitPhone" style="border:solid 1px; background-color: papayawhip;color: palevioletred; border-color: white;margin-left:10px">Submit</a>
+                            <input type="submit" name="buttonSubmit2" hidden id="submitFormPhone" >
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" type=" text/javascript"></script>
+
+    <script>
+
+        $('#changeEmail').on('click',function(){
+            $('#checkPasswordEmail').css('display','block');
+            $('#messageEmail').html('').css('color', 'red');
+
+        });
+         $('#changePhone').on('click',function(){
+            $('#checkPasswordPhone').css('display','block');
+            $('#messagePhone').html('').css('color', 'red');
+
+        });
+
+        $('#button_submitPhone').on('click',function(){
+             if ($('#passwordPhone').val() == $('#confirm_passwordPhone').val())
+            {
+                $('#formPhone').submit();
+            }
+            else
+            {
+                $('#messagePhone').html('not matching').css('color', 'red');
+                $("#confirm_passwordPhone").val('');
+            }
+        });
+         $('#button_submitEmail').on('click',function(){
+             if ($('#passwordEmail').val() == $('#confirm_passwordEmail').val())
+            {
+                $('#formEmail').submit();
+            }
+            else
+            {
+                $('#messageEmail').html('not matching').css('color', 'red');
+                $("#confirm_passwordEmail").val('');
+            }
+        });
+
+
+        $('#button_backPhone').on('click',function(){
+            $('#checkPasswordPhone').css('display','none');
+            $("#confirm_passwordPhone").val('');
+
+        });
+        $('#button_backEmail').on('click',function(){
+            $('#checkPasswordEmail').css('display','none');
+            $("#confirm_passwordEmail").val('');
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>

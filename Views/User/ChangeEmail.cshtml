@@ -1,0 +1,101 @@
+﻿
+@using Project2.Models
+@model User
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>ATP Cosmetics Shop </title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta content="Free HTML Templates" name="keywords">
+        <meta content="Free HTML Templates" name="description">
+
+        <!-- Favicon -->
+        <link href="img/favicon.ico" rel="icon">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+              rel="stylesheet">
+
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="/fontlib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="~/css/Style.css" type="text/css" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- Topbar Start -->
+            <!-- Page Header End -->
+
+            <div class="container-fluid pt-5">
+                <div class="row px-xl-5">
+                    <!-- Shop Sidebar Start -->
+                    <div class="col-lg-3 col-md-12">
+
+                        <div class="mb-5">
+                            <h5 class="font-weight-semi-bold mb-4">Profile customer</h5>
+                            <form>
+                                <div
+                                    class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                    <a href="DisplayInformationCustomer" class="" for="size-all">Information</a>
+                                </div>
+                                <div
+                                    class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                    <a href="DisplayAddress" class="" for="size-all">Address</a>
+                                </div>
+                                <div
+                                    class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                    <a href="ChangePassword" class="" for="size-all">Change password</a>
+                                </div>
+                                <div
+                                    class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                    <a href="DisplayHistotyBill" class="" for="size-all">History</a>
+                                </div>
+
+
+                            </form>
+                        </div>
+                        <!-- Size End -->
+                    </div>
+
+
+                    <form action="/User/DoChangeEmail" method="post" class="col-lg-9 col-md-12">
+                        <h4 class="font-weight-semi-bold mb-4">Change email</h4>
+                        <div class="row">
+
+                            <div class="col-md-6 form-group">
+                                <label>E-mail</label>
+                                <div class="input-group form-group  mx-auto">
+                                    <input name="userDetail.CustomerId" value="@Model.CustomerId" hidden="">
+                                    <input hidden type="text" />
+                                    <input name="userDetail.email" class="form-control" type="text" placeholder="example@email.com" value="@Model.UserDetail.Email">
+                            </div>
+                        </div>
+                        <div style="color: red">@ViewBag.mess</div>
+
+                        <button style="background-color: papayawhip;color: palevioletred; border-color: white; margin-left: 50%" type="submit">Submit</button>
+
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    
+    </body>
+
+</html>
+
