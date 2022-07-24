@@ -95,7 +95,7 @@
                             <a href="DisplayAddress" class="" for="size-all">Address</a>
                         </div>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <a href="ChangePassword" class="" for="size-all">Change password</a>
+                            <a href="/User/ChangePassword" class="" for="size-all">Change password</a>
                         </div>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                             <a href="DisplayHistotyBill" class="" for="size-all">History</a>
@@ -113,7 +113,7 @@
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label>Name</label>
-                        <input name="UserDetail.name" class="form-control" type="text" placeholder="John" value="@Model.UserName">
+                        <input name="UserDetail.name" class="form-control" type="text" placeholder="John" value="@Model.UserDetail.Name">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Address</label>
@@ -137,7 +137,7 @@
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Birthday</label>
-                        <input name="UserDetail.birthday" class="form-control" type="text" placeholder="YYYY-MM-DD " pattern="\d{1,2}/\d{1,2}/\d{4}" value="@Model.UserDetail.Birthday.ToString().Split(" ")[0]">
+                        <input name="UserDetail.birthday" class="form-control" type="text" placeholder="DD/MM/YYYY " pattern="\d{1,2}/\d{1,2}/\d{4}" value="@Model.UserDetail.Birthday.ToString().Split(" ")[0]">
                     </div>
 
                 </div>

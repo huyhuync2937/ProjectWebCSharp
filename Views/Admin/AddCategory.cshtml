@@ -1,16 +1,13 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Project2.Models
+@model List<Category>
 @{
-}
-@{
-
+    ViewBag.checkPage = 2;
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+<head>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -31,44 +28,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-xl">
-        <div class="container h-100">
-            <a class="navbar-brand" href="index.html">
-                <h1 class="tm-site-title mb-0">Product Admin</h1>
-            </a>
-            <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <i class="fas fa-bars tm-nav-icon"></i>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto h-100">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="fas fa-tachometer-alt"></i> Dashboard
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                  
-                    <li class="nav-item">
-                        <a class="nav-link active" href="AdminDisplayProduct">
-                            <i class="fas fa-shopping-cart"></i> Products
-                        </a>
-                    </li>
-
-                  
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link d-block" href="DisplayNewProduct">
-                            Admin, <b>Logout</b>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+   
     <div class="container tm-mt-big tm-mb-big">
         <div class="row">
             <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
@@ -80,45 +40,50 @@
                     </div>
                     <div class="row tm-edit-product-row">
                         <div class="col-xl-6 col-lg-6 col-md-12">
-                            <form action="AdminAddNewCategory" method="post" class="tm-edit-product-form">
+                            <form action="/Admin/DoAddNewCategory" method="post" class="tm-edit-product-form">
                                 <div class="form-group mb-3">
-                                    <label for="name">Add new category
+                                    <label for="name">
+                                        Add new category
                                     </label>
-                                    <input id="name" name="categoryNew" type="text" class="form-control validate"  />
+                                    <input id="name" name="Category.TypeName" type="text" class="form-control validate" />
                                 </div>
-                                 <c:if test="${check1 == false}">
-                                    <div  style="color: red;text-align: center">${mes1}</div>
-                                </c:if>
-                                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add new
-                                    category</button>
+                                    <div style="color: red;text-align: center">@ViewBag.mess1</div>
+                                <button type="submit" class="btn btn-primary btn-block text-uppercase">
+                                    Add new category
+                                </button>
                             </form>
 
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-                            <form action="AdminAddNewType" method="post" class="tm-edit-product-form">
+                            <form action="/Admin/DoAddNewType" method="post" class="tm-edit-product-form">
                                 <input name="type" value="1" hidden="">
 
                                 <div class="form-group mb-3">
                                     <div class="form-group mb-3">
                                         <label for="name">Add new type of Category</label>
-                                        <select name="categoryParent" class="custom-select tm-select-accounts" id="category">
-                                            <c:forEach items="${listType}" var="pr" >
-                                                <option value="${pr.typeId}">${pr.typeName}</option>
-                                            </c:forEach>
+                                        <select name="Category.ParentId" class="custom-select tm-select-accounts" id="category">
+                                            @foreach (Category category in Model)
+                                            {
+                                                if (category.ParentId == 0)
+                                                {
+                                                    <option value="@category.TypeId">@category.TypeName</option>
+
+                                                }
+                                            }
                                         </select>
                                     </div>
-                                    <label for="name">Add new type of Category
+                                    <label for="name">
+                                        Add new type of Category
                                     </label>
-                                    <input id="name" name="typeNew" type="text" class="form-control validate"  />
+                                    <input id="name" name="typeNew" type="text" class="form-control validate" />
                                 </div>
-                                <c:if test="${check2 == false}">
-                                    <div style="color: red;text-align: center">${mes2}</div>
-                                </c:if>
-                                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add new
-                                    type</button>
+                                    <div style="color: red;text-align: center">@ViewBag.mess2</div>
+                                <button type="submit" class="btn btn-primary btn-block text-uppercase">
+                                    Add new type
+                                </button>
                             </form>
                         </div>
-                       
+
 
                     </div>
                 </div>
@@ -136,9 +101,9 @@
     </footer>
 
     <!--    <script src="js/jquery-3.3.1.min.js"></script>
-         https://jquery.com/download/ 
+         https://jquery.com/download/
         <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
-         https://jqueryui.com/download/ 
+         https://jqueryui.com/download/
         <script src="js/bootstrap.min.js"></script>
          https://getbootstrap.com/ -->
 

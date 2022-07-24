@@ -153,7 +153,7 @@
 <body>
 
     <div class="signup-form">
-        <form action="/User/AddInformation" method="post">
+        <form action="/User/DoAddInformation" method="post">
             <h2>Information of customers</h2>
             <p>Please fill in this form to create an account!</p>
             <hr>
@@ -162,52 +162,45 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input type="text" class="form-control" name="User.name" placeholder="Name" required="required">
+                    <input type="text" class="form-control" name="name" placeholder="Name" required="required">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-                    <input type="text" class="form-control" name="User.address" placeholder="Address" required="required">
+                    <input type="text" class="form-control" name="address" placeholder="Address" required="required">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-solid fa-calendar-day"></i></span>
-                    <input type="text" placeholder="YYYY-MM-DD" pattern="\d{1,2}/\d{1,2}/\d{4}" class="form-control" name="User.birthday"  required="required" >
+                    <input type="text" placeholder="DD/YY/MMMM" pattern="\d{1,2}/\d{1,2}/\d{4}" class="form-control" name="birthday" required="required">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                    <input type="text" id="password" class="form-control" name="User.phone" placeholder="Phone" required="required" pattern="[0-9]{3}[0-9]{2}[0-9]{3}">
+                    <input type="text" id="password" class="form-control" name="phone" placeholder="Phone" required="required" pattern="[0-9]{3}[0-9]{2}[0-9]{3}">
                 </div>
-                @if (ViewBag.CheckList[1] == false)
-                {
-                    <div style="color: red">Phone is exist</div>
 
-                }
+                <div style="color: red">@ViewBag.mess2</div>
+
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-                    <input type="email" class="form-control" name="User.email" placeholder="Email Address" required="required">
+                    <input type="email" class="form-control" name="email" placeholder="Email Address" required="required">
                 </div>
-                @if (ViewBag.CheckList[0] == false)
-                {
-                    <div style="color: red">Email is exist</div>
 
-                }
+                <div style="color: red">@ViewBag.mess1</div>
             </div>
-
-
             <div class="form-group">
                 <label class="checkbox-inline">
                     <input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a>
                 </label>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+                <input type="submit" class="btn btn-primary btn-lg" value="Sign Up">
             </div>
         </form>
         <div class="text-center">Already have an account? <a href="/Guest/Login">Login here</a></div>

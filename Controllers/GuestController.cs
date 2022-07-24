@@ -68,8 +68,6 @@ namespace Project2.Controllers
             {
                 user = new User(NewUser.UserName, NewUser.Password, 0);
                 UserManager.SetNewUser(user);
-
-                //System.Diagnostics.Debug.WriteLine(user.CustomerId);
                 return RedirectToAction("AddInformation", "User");
             }
             else
@@ -80,14 +78,36 @@ namespace Project2.Controllers
 
         }
 
+        public IActionResult OurShop(int TypeID, int Page)
+        {
 
-        public IActionResult OurShop()
-        {
+            if (Page <= 0) Page = 1;
+            int PageSize = 3;
+            List<ProductDetail> productDetail = new List<ProductDetail>();
+            productDetail = ProductDetailManager.GetProductDetailPaging(TypeID, (Page - 1) * PageSize + 1, PageSize);
+            int TotalProduct = ProductDetailManager.GetNumerOfProduct(TypeID);
+            int TotalPage = TotalProduct / PageSize;
+            if (TotalProduct % PageSize != 0) TotalPage++;
+            ViewData["TotalPage"] = TotalPage;
+            ViewData["CurrentPage"] = Page;
+            ViewData["PrePage"] = Page - 1;
+            ViewData["NextPage"] = Page + 1;
+            ViewData["CurrentProduct"] = TypeID;
+            ViewBag.productDetail = productDetail;
+
             return View();
+
         }
-        public IActionResult DetailProduct()
+        public IActionResult FilterCategory( int TypeID)
         {
-            return View();
+            return RedirectToAction("OurShop", "Guest", new { TypeID = TypeID, Page = -1 });
+
+        }
+       
+        public IActionResult DetailProduct(int productID)
+        {
+            ProductDetail productDetail = ProductDetailManager.GetProductDetailByProductID(productID);
+            return View(productDetail);
         }
     }
 }

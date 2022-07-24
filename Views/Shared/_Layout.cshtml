@@ -77,7 +77,7 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form action="ProcessSearchAndPaging" method="Post">
+                <form action="/Guest/SearchProduct" method="Post">
                     <div class="input-group">
                         <input name="stringSearch" type="text" class="form-control" placeholder="Search for products">
                         <div class="input-group-append">
@@ -94,7 +94,7 @@
                     <i class="fas fa-heart text-primary"></i>
                     <span class="badge">0</span>
                 </a>
-                <a href="DisplayCart" class="btn border">
+                <a href="/User/Cart" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
                     <span class="badge"></span>
                 </a>
@@ -141,7 +141,7 @@
                                             {
                                                 @if (category1.ParentId == category.TypeId)
                                                 {
-                                                    <a href="ProcessSearchAndPaging?type=1&typeID=@category1.TypeId" class="a-drop ">@category1.TypeName</a>
+                                                    <a href="/Guest/FilterCategory?typeID=@category1.TypeId" class="a-drop ">@category1.TypeName</a>
                                                 }
                                             }
                                         </div>
@@ -164,7 +164,6 @@
 
                            
                             <div style="width: 20%;margin-left:0 !important" class="navbar-nav ml-auto py-0">
-                                <!--<div style="margin-right: 200px" >${sessionScope.customerName}</div>-->
                             <a href="/User/Profile" class="nav-item nav-link">Hello, @use.UserName</a>
                                 <a href="/User/Logout" class="nav-item nav-link">Log out</a>
                             </div>

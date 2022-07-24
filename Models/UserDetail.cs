@@ -15,22 +15,5 @@ namespace Project2.Models
         public string Email { get; set; }
 
         public virtual User Customer { get; set; }
-
-        public UserDetail(int customerId, string name, string address, DateTime? birthday, string phone, string email, User customer)
-        {
-            CustomerId = customerId;
-            Name = name;
-            Address = address;
-            Birthday = birthday;
-            Phone = phone;
-            Email = email;
-            Customer = customer;
-        }
-
-       
-
-        public UserDetail()
-        {
-        }
     }
 }

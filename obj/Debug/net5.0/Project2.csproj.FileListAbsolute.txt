@@ -155,3 +155,11 @@ D:\.NET program\FirstWeb\Project2\obj\Debug\net5.0\Razor\Views\Shared\_LayoutAdm
 D:\.NET program\FirstWeb\Project2\obj\Debug\net5.0\Razor\Views\User\AddInformation.cshtml.g.cs
 D:\.NET program\FirstWeb\Project2\obj\Debug\net5.0\Razor\Views\User\ChangeEmail.cshtml.g.cs
 D:\.NET program\FirstWeb\Project2\obj\Debug\net5.0\Razor\Views\User\ChangePhone.cshtml.g.cs
+D:\.NET program\FirstWeb\Project2\obj\Debug\net5.0\Razor\Views\User\Cart.cshtml.g.cs
+D:\.NET program\FirstWeb\Project2\bin\Debug\net5.0\System.Web.Mvc.dll
+D:\.NET program\FirstWeb\Project2\bin\Debug\net5.0\System.Web.Razor.dll
+D:\.NET program\FirstWeb\Project2\bin\Debug\net5.0\System.Web.Helpers.dll
+D:\.NET program\FirstWeb\Project2\bin\Debug\net5.0\System.Web.WebPages.Deployment.dll
+D:\.NET program\FirstWeb\Project2\bin\Debug\net5.0\System.Web.WebPages.Razor.dll
+D:\.NET program\FirstWeb\Project2\bin\Debug\net5.0\System.Web.WebPages.dll
+D:\.NET program\FirstWeb\Project2\bin\Debug\net5.0\Microsoft.Web.Infrastructure.dll

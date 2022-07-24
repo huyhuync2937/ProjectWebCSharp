@@ -107,7 +107,7 @@
                         </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="DisplayDetailProduct?type=1&Detail=@product.ProductId" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                            <a href="/Guest/DetailProduct?productID=@product.ProductId" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
                             @if (product.NumberOfInventory == 0)
                             {
                                 <a class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Out of stock</a>
@@ -115,7 +115,7 @@
                             }
                             @if (product.NumberOfInventory != 0)
                             {
-                                <a href="AddProductToCart?type=1&AddCartProductID=@product.ProductId" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                                <a href="/User/AddProductToCart?ProductID=@product.ProductId" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
 
                             }
 
@@ -144,14 +144,14 @@
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="DisplayDetailProduct?type=1&Detail=@product1.ProductId" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                            <a href="/Guest/DetailProduct?productID=@product1.ProductId" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
                             @if (product1.NumberOfInventory == 0)
                             {
                                 <a class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i> Out of stock</a>
                             }
                             else
                             {
-                                <a href="AddProductToCart?type=1&AddCartProductID=@product1.ProductId" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i> Add To Cart</a>
+                                <a href="/User/AddProductToCart?ProductID=@product1.ProductId" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i> Add To Cart</a>
 
                             }
                         </div>

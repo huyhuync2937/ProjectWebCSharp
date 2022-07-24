@@ -16,5 +16,26 @@ namespace Project2.Logic
             }
             return categories;
         }
+
+        internal static bool IsExistCategory(string typeName)
+        {
+           using(var context = new DBContext())
+            {
+                Category category = context.Categories.FirstOrDefault(x => x.TypeName.Equals(typeName));
+                if(category != null)
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+        internal static void SetNewCategory(Category category)
+        {
+            using (var context = new DBContext())
+            {
+                context.Categories.Add(category);
+                context.SaveChanges();
+            }
+        }
     }
 }

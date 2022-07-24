@@ -14,16 +14,17 @@ namespace Project2.Models
 
         public virtual UserDetail UserDetail { get; set; }
 
+        public User()
+        {
+        }
+
         public User(string userName, string password, int isAdmin)
         {
             UserName = userName;
             Password = password;
             IsAdmin = isAdmin;
         }
-
-        public User()
-        {
-        }
     }
+
 
 }

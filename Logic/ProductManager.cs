@@ -18,14 +18,23 @@ namespace Project2.Logic
 
         }
 
+        internal static List<Product> GetAllProduct()
+        {
+            using (var context = new DBContext())
+            {
+
+                return context.Products.ToList();
+            }
+        }
+
         internal static List<Product> GetProductNew()
         {
             List<Product> products = new List<Product>();
-            using(var context = new DBContext())
+            using (var context = new DBContext())
             {
                 products = context.Products.OrderBy(x => x.DateAdd).Take(8).ToList();
             }
-            foreach(var product in products)
+            foreach (var product in products)
             {
                 Console.WriteLine(product.ProductId);
             }
@@ -47,9 +56,66 @@ namespace Project2.Logic
                     Convert.ToBoolean(dr[6]),
                     dr[7].ToString()
                     ));
-                 
+
             }
             return products;
+        }
+
+        internal static void SetNewProduct(Product product)
+        {
+            using (var context = new DBContext())
+            {
+                context.Products.Add(product);
+                context.SaveChanges();
+            }
+        }
+
+        internal static int GetProductNewId()
+        {
+            using (var context = new DBContext())
+            {
+                return context.Products.OrderByDescending(x => x.ProductId).FirstOrDefault().ProductId;
+            }
+        }
+
+
+        internal static void DeleteProductByProductID(int productID)
+        {
+            using (var context = new DBContext())
+            {
+                context.Products.Remove(context.Products.FirstOrDefault(x => x.ProductId == productID));
+                context.SaveChanges();
+            }
+        }
+
+        internal static Product GetProductByProductID(int productId)
+        {
+            using (var context = new DBContext())
+            {
+                return context.Products.FirstOrDefault(x => x.ProductId == productId);
+            }
+        }
+
+        internal static int UpdateProduct(Product product)
+        {
+            string sql1 = "UPDATE [dbo].[Product] SET [ProductName] = @ProductName ,[ImportPrice] = @ImportPrice ,[SellPrice] = @SellPrice ,[Number of Inventory] = @number ,[Date add] = @date WHERE ProductID = @id";
+            SqlParameter para1 = new SqlParameter("@ProductName", System.Data.SqlDbType.NVarChar);
+            para1.Value = product.ProductName;
+            SqlParameter para2 = new SqlParameter("@ImportPrice", System.Data.SqlDbType.Int);
+            para2.Value = product.ImportPrice;
+            SqlParameter para3 = new SqlParameter("@SellPrice", System.Data.SqlDbType.Int);
+            para3.Value = product.SellPrice;
+            SqlParameter para4 = new SqlParameter("@number", System.Data.SqlDbType.Int);
+            para4.Value = product.NumberOfInventory;
+            SqlParameter para5 = new SqlParameter("@date", System.Data.SqlDbType.DateTime);
+            para5.Value = product.DateAdd;
+            SqlParameter para6 = new SqlParameter("@id", System.Data.SqlDbType.Int);
+            para6.Value = product.ProductId;
+
+         
+
+            SqlParameter[] sqlParameters = { para1, para2, para3, para4, para5, para6 };
+            return DAO.ExecuteSql(sql1, sqlParameters);
         }
     }
 }

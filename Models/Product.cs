@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 #nullable disable
 
@@ -16,6 +17,10 @@ namespace Project2.Models
         public bool? Status { get; set; }
         public string Image { get; set; }
 
+        public Product()
+        {
+        }
+
         public Product(int productId, string productName, int? importPrice, int? sellPrice, int? numberOfInventory, DateTime? dateAdd, bool? status, string image)
         {
             ProductId = productId;
@@ -27,5 +32,7 @@ namespace Project2.Models
             Status = status;
             Image = image;
         }
+
+      
     }
 }

@@ -64,29 +64,28 @@ namespace Project2.Models
                     .WithMany()
                     .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Bill__CustomerID__0E6E26BF");
+                    .HasConstraintName("FK__Bill__CustomerID__2C3393D0");
 
                 entity.HasOne(d => d.Product)
                     .WithMany()
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Bill__ProductID__0F624AF8");
+                    .HasConstraintName("FK__Bill__ProductID__2D27B809");
             });
 
             modelBuilder.Entity<Category>(entity =>
             {
-                entity.HasKey(e => e.TypeName)
-                    .HasName("PK_Category_HE153639_SE1606");
+                entity.HasKey(e => e.TypeId);
 
                 entity.ToTable("Category");
 
-                entity.Property(e => e.TypeName).HasMaxLength(100);
+                entity.Property(e => e.TypeId).HasColumnName("TypeID");
 
                 entity.Property(e => e.ParentId).HasColumnName("ParentID");
 
-                entity.Property(e => e.TypeId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("TypeID");
+                entity.Property(e => e.TypeName)
+                    .IsRequired()
+                    .HasMaxLength(100);
             });
 
             modelBuilder.Entity<Product>(entity =>
@@ -118,26 +117,25 @@ namespace Project2.Models
 
                 entity.Property(e => e.Description).HasMaxLength(4000);
 
-                entity.Property(e => e.Ingredient).HasColumnType("text");
 
                 entity.Property(e => e.Origin).HasMaxLength(50);
 
                 entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
-                entity.Property(e => e.TypeName).HasMaxLength(100);
+                entity.Property(e => e.TypeId).HasColumnName("TypeID");
 
-                entity.Property(e => e.UserManual).HasColumnType("text");
 
                 entity.HasOne(d => d.Product)
                     .WithMany()
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Product D__Produ__123EB7A3");
+                    .HasConstraintName("FK__Product_D__Produ__2E1BDC42");
 
-                entity.HasOne(d => d.TypeNameNavigation)
+                entity.HasOne(d => d.Type)
                     .WithMany()
-                    .HasForeignKey(d => d.TypeName)
-                    .HasConstraintName("FK__Product D__TypeN__2B0A656D");
+                    .HasForeignKey(d => d.TypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Product_Detail_Category");
             });
 
             modelBuilder.Entity<User>(entity =>
@@ -185,7 +183,7 @@ namespace Project2.Models
                     .WithOne(p => p.UserDetail)
                     .HasForeignKey<UserDetail>(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Customer __Custo__10566F31");
+                    .HasConstraintName("FK__User_Deta__Custo__300424B4");
             });
 
             OnModelCreatingPartial(modelBuilder);
